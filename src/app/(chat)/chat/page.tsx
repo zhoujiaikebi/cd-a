@@ -591,7 +591,7 @@ export default function ChatPage() {
               <Search className="w-4 h-4 mr-1" />
               联网模式
             </Button>
-            <Button variant="outline" size="sm" onClick={() => { const modal = document.getElementById("image-modal"); if (modal) (modal as any).showModal(); }}>
+            <Button variant="outline" size="sm" onClick={() => { const modal = document.getElementById("image-modal"); if (modal) (modal as HTMLDialogElement).showModal(); }}>
               <ImageIcon className="w-4 h-4 mr-1" />
               文生图
             </Button>
@@ -773,7 +773,7 @@ export default function ChatPage() {
         <div className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-lg">文生图</h3>
-            <button onClick={() => { const modal = document.getElementById("image-modal"); if (modal) modal.close(); }} className="p-1 rounded hover:bg-slate-100">
+            <button onClick={() => { const modal = document.getElementById("image-modal"); if (modal) (modal as HTMLDialogElement).close(); }} className="p-1 rounded hover:bg-slate-100">
               <X className="w-5 h-5" />
             </button>
           </div>
