@@ -77,6 +77,7 @@ export default function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const imageDialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -591,7 +592,7 @@ export default function ChatPage() {
               <Search className="w-4 h-4 mr-1" />
               联网模式
             </Button>
-            <Button variant="outline" size="sm" onClick={() => { const modal = document.getElementById("image-modal"); if (modal) (modal as HTMLDialogElement).showModal(); }}>
+            <Button variant="outline" size="sm" onClick={() => imageDialogRef.current?.showModal()}>
               <ImageIcon className="w-4 h-4 mr-1" />
               文生图
             </Button>
@@ -769,11 +770,11 @@ export default function ChatPage() {
       </Dialog>
 
       {/* Image Generation Modal */}
-      <dialog id="image-modal" className="rounded-xl shadow-2xl p-0 w-full max-w-lg backdrop:bg-black/50">
+      <dialog ref={imageDialogRef} id="image-modal" className="rounded-xl shadow-2xl p-0 w-full max-w-lg backdrop:bg-black/50">
         <div className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-lg">文生图</h3>
-            <button onClick={() => { const modal = document.getElementById("image-modal"); if (modal) (modal as HTMLDialogElement).close(); }} className="p-1 rounded hover:bg-slate-100">
+            <button type="button" onClick={() => imageDialogRef.current?.close()} className="p-1 rounded hover:bg-slate-100">
               <X className="w-5 h-5" />
             </button>
           </div>
